@@ -5,9 +5,7 @@
 > Role models are important. <br/>
 > -- Офицер Алекс Мёрфи / Робот-полицейский
 
-The goal of this guide is to present a set of best practices and style
-prescriptions for Ruby on Rails 3 & 4 development. It's a complementary
-guide to the already existing community-driven
+Цель этого руководства заключается в представлении набора лучших практик и рецептов стиля оформления кода при разработке на Ruby on Rails 4. Оно дополняет уже существующее разрабатываемое сообществом руководство
 [Руби: руководство по стилю оформления][ruby-style-guide].
 
 Некоторые из приведенных здесь рекомендаций будут применимы только
@@ -27,20 +25,11 @@ guide to the already existing community-driven
 
 # Руководство по стилю оформления Rails
 
-This Rails style guide recommends best practices so that real-world Rails
-programmers can write code that can be maintained by other real-world Rails
-programmers. A style guide that reflects real-world usage gets used, and a
-style guide that holds to an ideal that has been rejected by the people it is
-supposed to help risks not getting used at all &ndash; no matter how good it is.
+Данное руководство по стилю оформления кода Rails рекомендует лучшие практики чтобы одни программисты Rails могли писать код который легко будет поддерживаться другими программистами. Руководство по стилю которое отражает реальное практики написания кода используется, а руководство, описывающее идеальные условия, но не отражающее реальность было отвергнуто сообществом, независимо от того насколько оно хорошо.
 
-The guide is separated into several sections of related rules. I've
-tried to add the rationale behind the rules (if it's omitted I've
-assumed it's pretty obvious).
+Руководство разделено на несколько секций связанных правил. Я пытался добавить обоснования правил(если обоснование пропущено, значит я посчитал что оно очевидно).
 
-I didn't come up with all the rules out of nowhere - they are mostly
-based on my extensive career as a professional software engineer,
-feedback and suggestions from members of the Rails community and
-various highly regarded Rails programming resources.
+Я не пришел со всеми этими правилами из ниоткуда - они основаны на моей обширной карьереы в качестве профессионального разработчика, отзывах и предложениях от членов сообщества Rails и значительных ресурсов по программированию на Rails.
 
 ## Содержание
 

@@ -218,8 +218,7 @@
 ### ActiveRecord
 
 * <a name="keep-ar-defaults"></a>
-  Avoid altering ActiveRecord defaults (table names, primary key, etc) unless
-  you have a very good reason (like a database that's not under your control).
+	Избегайте изменять умолчания ActiveRecord (имена таблиц, первичные ключи и т.д.), если только у вас нет веских причин делать это (например если база данных управляется не вами)
   <sup>[[ссылка](#keep-ar-defaults)]</sup>
 
     ```Ruby
@@ -231,53 +230,50 @@
     ```
 
 * <a name="macro-style-methods"></a>
-  Group macro-style methods (`has_many`, `validates`, etc) in the beginning of
-  the class definition.
+	Группируйте макро методы (`has_many`, `validates`, и т.д.) в начале определения класса
   <sup>[[ссылка](#macro-style-methods)]</sup>
 
     ```Ruby
     class User < ActiveRecord::Base
-      # keep the default scope first (if any)
+      # скоуп по умолчанию должен быть первым (если он есть)
       default_scope { where(active: true) }
 
-      # constants come up next
+      # далее идут константы
       GENDERS = %w(male female)
 
-      # afterwards we put attr related macros
+      # после них кладем макросы работающие с атрибутами
       attr_accessor :formatted_date_of_birth
 
       attr_accessible :login, :first_name, :last_name, :email, :password
 
-      # followed by association macros
+      # затем пишем ассоциации
       belongs_to :country
 
       has_many :authentications, dependent: :destroy
 
-      # and validation macros
+      # и валидации
       validates :email, presence: true
       validates :username, presence: true
       validates :username, uniqueness: { case_sensitive: false }
       validates :username, format: { with: /\A[A-Za-z][A-Za-z0-9._-]{2,19}\z/ }
       validates :password, format: { with: /\A\S{8,128}\z/, allow_nil: true}
 
-      # next we have callbacks
+      # далее идут коллбеки
       before_save :cook
       before_save :update_username_lower
 
-      # other macros (like devise's) should be placed after the callbacks
-
+      # остальные макросы (например devise должны быть после всех коллбеков
       ...
     end
     ```
 
 * <a name="has-many-through"></a>
-  Prefer `has_many :through` to `has_and_belongs_to_many`. Using
-  `has_many :through` allows additional attributes and validations on the join
-  model.
+  Предпочитайте ассоциацию `has_many :through` ассоциацям вида `has_and_belongs_to_many`. Использования
+  `has_many :through` позволяет иметь дополнительные атрибуты и валидаци при объединении моделей.
   <sup>[[ссылка](#has-many-through)]</sup>
 
     ```Ruby
-    # не особо (using has_and_belongs_to_many)
+    # не очень хорошо (использование has_and_belongs_to_many)
     class User < ActiveRecord::Base
       has_and_belongs_to_many :groups
     end
@@ -286,7 +282,7 @@
       has_and_belongs_to_many :users
     end
 
-    # prefered way - using has_many :through
+    # предпочтительно - использование has_many :through
     class User < ActiveRecord::Base
       has_many :memberships
       has_many :groups, through: :memberships
@@ -304,7 +300,7 @@
     ```
 
 * <a name="read-attribute"></a>
-  Prefer `self[:attribute]` over `read_attribute(:attribute)`.
+  Лучше использовать `self[:attribute]` чем `read_attribute(:attribute)`.
   <sup>[[ссылка](#read-attribute)]</sup>
 
     ```Ruby
@@ -320,7 +316,7 @@
     ```
 
 * <a name="write-attribute"></a>
-  Always use the new ["sexy" validations](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/).
+  Всегда используйте новые ["сексуальные" валидации](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/).
   <sup>[[ссылка](#write-attribute)]</sup>
 
     ```Ruby
@@ -332,8 +328,7 @@
     ```
 
 * <a name="sexy-validations"></a>
-  When a custom validation is used more than once or the validation is some
-  regular expression mapping, create a custom validator file.
+	Когда нестандартная валидация используется чаще чем один раз или является неким регулярным выражением, создайте файл нестандартной валидации.
   <sup>[[ссылка](#sexy-validations)]</sup>
 
     ```Ruby
@@ -355,16 +350,15 @@
     ```
 
 * <a name="custom-validator-file"></a>
-  Keep custom validators under `app/validators`.
+  Держите свои валидаторы в папке `app/validators`.
   <sup>[[ссылка](#custom-validator-file)]</sup>
 
 * <a name="app-validators"></a>
-  Consider extracting custom validators to a shared gem if you're maintaining
-  several related apps or the validators are generic enough.
+  Подумайте о создании гема из пользовательских валидаторов, если вы поддерживаете несколько похожих приложений или ваши валидаторы имеют достаточно общий характер.
   <sup>[[ссылка](#app-validators)]</sup>
 
 * <a name="custom-validators-gem"></a>
-  Use named scopes freely.
+  Свободно используйте пространства имен (скоупы).
   <sup>[[ссылка](#custom-validators-gem)]</sup>
 
     ```Ruby
@@ -377,8 +371,7 @@
     ```
 
 * <a name="named-scopes"></a>
-  Wrap named scopes in `lambdas` to initialize them lazily (this is only
-  a prescription in Rails 3, but is mandatory in Rails 4).
+	Оборачивайте именованные скоупы в `лямбды` чтобы инициализировать их "лениво". (это только рекомендация в Rails 3, но является обязательным в Rails 4)
   <sup>[[ссылка](#named-scopes)]</sup>
 
     ```Ruby
@@ -400,10 +393,7 @@
     ```
 
 * <a name="named-scope-class"></a>
-  When a named scope defined with a lambda and parameters becomes too
-  complicated, it is preferable to make a class method instead which serves
-  the same purpose of the named scope and returns an `ActiveRecord::Relation`
-  object. Arguably you can define even simpler scopes like this.
+	Когда именованный скоуп определен и через лямбда-функцию и параметры становятся слишком сложными, лучше создать метод класса который обслуживает этот скоуп и будет возвращать объект `ActiveRecord::Relation`. Возможно вы сможете определить более простой скоуп.
   <sup>[[ссылка](#named-scope-class)]</sup>
 
     ```Ruby
@@ -415,17 +405,14 @@
     ```
 
 * <a name="beware-update-attribute"></a>
-  Beware of the behavior of the [`update_attribute`](http://api.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-update_attribute) method. It doesn't  run the model validations (unlike `update_attributes`) and could easily corrupt the model state.
+Остерегайтесь поведения метода [`update_attribute`](http://api.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-update_attribute). Он не запускает валидацию модели (в отличие от `update_attributes`) и легко может нарушить состояние модели.
   <sup>[[ссылка](#beware-update-attribute)]</sup>
 
 * <a name="user-friendly-urls"></a>
-  Use user-friendly URLs. Show some descriptive attribute of the model in the URL rather than its `id`.  There is more than one way to achieve this:
+	Используйте понятные человеку адреса (ЧПУ). Покажите описателный атрибут модели, а не id. Есть много способов сделать это.
   <sup>[[ссылка](#user-friendly-urls)]</sup>
 
-  * Override the `to_param` method of the model. This method is used by Rails
-    for constructing a URL to the object. The default implementation returns the
-    `id` of the record as a String. It could be overridden to include another
-    human-readable attribute.
+  * Переопределите метод модели `to_param`. Этот метод используется Rails для построения url объекта. По умолчанию этот метод возвращает `id` объекта в виде String. Он может быть переопределен, чтобы показать более читаемый атрибут.
 
         ```Ruby
         class Person

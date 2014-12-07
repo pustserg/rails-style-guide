@@ -170,18 +170,15 @@
 ## Контроллеры
 
 * <a name="skinny-controllers"></a>
-  Keep the controllers skinny - they should only retrieve data for the view
-  layer and shouldn't contain any business logic (all the business logic should
-  naturally reside in the model).
+Держите контроллеры "тощими" - они должны только получать данные из видов и не должны содержать какую-либо бизнес-логику (вся бизнес-логика должна быть в моделях.
   <sup>[[ссылка](#skinny-controllers)]</sup>
 
 * <a name="one-method"></a>
-  Each controller action should (ideally) invoke only one method other than an
-  initial find or new.
+  Каждый экшен в контроллере должен (в идеале) вызывать только один метод, кроме initial find or new.
   <sup>[[ссылка](#one-method)]</sup>
 
 * <a name="shared-instance-variables"></a>
-  Share no more than two instance variables between a controller and a view.
+  Обменивайтесь не более двумя переменными экземпляра между контроллером и видом.
   <sup>[[ссылка](#shared-instance-variables)]</sup>
 
 ## Модели

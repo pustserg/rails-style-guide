@@ -58,7 +58,7 @@
 
 * <a name="dev-test-prod-configs"></a>
 
-  Настройте среду окружения для разработки, тестов и деплоймента (в соответсвующих файлах, лежащих в `config/environments/`)
+  Настройте среду окружения для разработки, тестов и деплоймента (в соответствующих файлах, лежащих в `config/environments/`)
   <sup>[[ссылка](#dev-test-prod-configs)]</sup>
 
         ```Ruby
@@ -78,8 +78,8 @@
 ## Маршрутизация
 
 * <a name="member-collection-routes"></a>
-  When you need to add more actions to a RESTful resource (do you really need
-  them at all?) use `member` and `collection` routes.
+  Если вам нужно добавить больше экшенов к RESTful ресурсу (они вам действительно необходимы?), используйте
+  `member` и `collection` маршруты.
   <sup>[[ссылка](#member-collection-routes)]</sup>
 
     ```Ruby
@@ -103,8 +103,8 @@
     ```
 
 * <a name="many-member-collection-routes"></a>
-  If you need to define multiple `member/collection` routes use the alternative
-  block syntax.
+	Если вам надо определить много `member/collection` маршрутов, 	 используйте альтернативный синтаксис блока.
+  
   <sup>[[ссылка](#many-member-collection-routes)]</sup>
 
     ```Ruby
@@ -124,8 +124,7 @@
     ```
 
 * <a name="nested-routes"></a>
-  Use nested routes to express better the relationship between ActiveRecord
-  models.
+	Используйте вложенные маршруты чтобы лучше показать отношения между моделями.
   <sup>[[ссылка](#nested-routes)]</sup>
 
     ```Ruby
@@ -144,7 +143,7 @@
     ```
 
 * <a name="namespaced-routes"></a>
-  Use namespaced routes to group related actions.
+  Используйте маршрутные пространства имен чтобы группировать связанные экшены.
   <sup>[[ссылка](#namespaced-routes)]</sup>
 
     ```Ruby
@@ -156,8 +155,7 @@
     ```
 
 * <a name="no-wild-routes"></a>
-  Never use the legacy wild controller route. This route will make all actions
-  in every controller accessible via GET requests.
+  Никогда не используйте устаревший дикий маршрут контроллера. Этот маршрут сделает все экшены в каждом контроллере, доступными через запросы GET.
   <sup>[[ссылка](#no-wild-routes)]</sup>
 
     ```Ruby
@@ -166,7 +164,7 @@
     ```
 
 * <a name="no-match-routes"></a>
-  Don't use `match` to define any routes. It's removed from Rails 4.
+  Не используйте `match` чтобы определить маршруты. Это удалено в Rails 4.
   <sup>[[ссылка](#no-match-routes)]</sup>
 
 ## Контроллеры

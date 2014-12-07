@@ -49,18 +49,16 @@
 ## Конфигурация
 
 * <a name="config-initializers"></a>
-  Put custom initialization code in `config/initializers`. The code in
-  initializers executes on application startup.
+  Кладите код, выполняющийся при инициализации приложения в `config/initializers`.
   <sup>[[ссылка](#config-initializers)]</sup>
 
 * <a name="gem-initializers"></a>
-  Keep initialization code for each gem in a separate file with the same name as
-  the gem, for example `carrierwave.rb`, `active_admin.rb`, etc.
+  Держите код инициализации каждого гема в отдельных файлах, названных так же как гем. Например `carrierwave.rb`, `active_admin.rb`, и т.д.
   <sup>[[ссылка](#gem-initializers)]</sup>
 
 * <a name="dev-test-prod-configs"></a>
-  Adjust accordingly the settings for development, test and production
-  environment (in the corresponding files under `config/environments/`)
+
+  Настройте среду окружения для разработки, тестов и деплоймента (в соответсвующих файлах, лежащих в `config/environments/`)
   <sup>[[ссылка](#dev-test-prod-configs)]</sup>
 
         ```Ruby
@@ -70,13 +68,11 @@
         ```
 
 * <a name="app-config"></a>
-  Keep configuration that's applicable to all environments
-  in the `config/application.rb` file.
+  Держите конфигурацию общую для всех окружений в файле `config/application.rb`.
   <sup>[[ссылка](#app-config)]</sup>
 
 * <a name="staging-like-prod"></a>
-  Create an additional `staging` environment that closely resembles
-  the `production` one.
+  Создайте дополнительную `staging` среду, которая очень близко напоминает среду`production`.
   <sup>[[ссылка](#staging-like-prod)]</sup>
 
 ## Маршрутизация

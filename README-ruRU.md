@@ -188,12 +188,11 @@
   <sup>[[ссылка](#model-classes)]</sup>
 
 * <a name="meaningful-model-names"></a>
-  Name the models with meaningful (but short) names without  abbreviations.
+	Называйте модели понятными (но короткими) именами без аббревиатур.
   <sup>[[ссылка](#meaningful-model-names)]</sup>
 
 * <a name="activeattr-gem"></a>
-  If you need model objects that support ActiveRecord behavior (like validation)
-  use the [ActiveAttr](https://github.com/cgriego/active_attr) gem.
+	Если вам нужны объекты модели которые поддерживают поведение ActiveRecord (например, валидацию), используйте [ActiveAttr](https://github.com/cgriego/active_attr) гем.
   <sup>[[ссылка](#activeattr-gem)]</sup>
 
     ```Ruby
@@ -213,7 +212,7 @@
     end
     ```
 
-    For a more complete example refer to the
+    Более подробный пример смотрите в скринкасте
     [RailsCast on the subject](http://railscasts.com/episodes/326-activeattr).
 
 ### ActiveRecord

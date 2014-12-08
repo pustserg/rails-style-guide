@@ -487,47 +487,37 @@
 
 
 * <a name="schema-version"></a>
-  Keep the `schema.rb` (or `structure.sql`) under version control.
+  Держите файл `schema.rb` (или `structure.sql`) под управлением системы контроля версий.
 <sup>[[ссылка](#schema-version)]</sup>
 
 * <a name="db-schema-load"></a>
-  Use `rake db:schema:load` instead of `rake db:migrate` to initialize an empty
-  database.
+  Используйте `rake db:schema:load` , а не `rake db:migrate` чтобы инициализировать пустую базу.
 <sup>[[ссылка](#db-schema-load)]</sup>
 
 * <a name="default-migration-values"></a>
-  Enforce default values in the migrations themselves instead of in the
-  application layer.
+  Выносите значения по умолчанию на уровень базы данных, а не на уровень приложения.
 <sup>[[ссылка](#default-migration-values)]</sup>
 
   ```Ruby
-  # плохо - application enforced default value
+  # плохо - значения по умолчанию вынесены в приложение.
   def amount
     self[:amount] or 0
   end
   ```
 
-  While enforcing table defaults only in Rails is suggested by many
-  Rails developers, it's an extremely brittle approach that
-  leaves your data vulnerable to many application bugs.  And you'll
-  have to consider the fact that most non-trivial apps share a
-  database with other applications, so imposing data integrity from
-  the Rails app is impossible.
+  Несмотря на то что управление значениями по умолчанию предлагается многими Rails разработчиками, это очень опасный подход, который оставляет данные уязвимыми для ошибок приложений. Вы должны учитывать тот факт что большинство нетривиальных приложений делять базы данных с другими приложениями, и управлять целостностью данных в базе не могут.
 
 * <a name="foreign-key-constraints"></a>
-  Enforce foreign-key constraints. While ActiveRecord does not support them
-  natively, there some great third-party gems like
-  [schema_plus](https://github.com/lomba/schema_plus) and
-  [foreigner](https://github.com/matthuhiggins/foreigner).
+ Принудительное ограничения внешнего ключа. Хотя ActiveRecord не поддерживает их в естественном виде, есть некоторые прекрасные сторонние гемы, как [schema_plus](https://github.com/lomba/schema_plus) и  [foreigner](https://github.com/matthuhiggins/foreigner).
 <sup>[[ссылка](#foreign-key-constraints)]</sup>
 
 * <a name="change-vs-up-down"></a>
-  When writing constructive migrations (adding tables or columns),
-  use the `change` method instead of `up` and `down` methods.
+  Когда пишете конструктивные миграции (добавляющие столбцы или таблицы),
+используйте `change` метод, а не `up` and `down`.
 <sup>[[ссылка](#change-vs-up-down)]</sup>
 
   ```Ruby
-  # the old way
+  # устаревший подход
   class AddNameToPeople < ActiveRecord::Migration
     def up
       add_column :people, :name, :string
@@ -538,7 +528,7 @@
     end
   end
 
-  # the new prefered way
+  # предпочтительный подход.
   class AddNameToPeople < ActiveRecord::Migration
     def change
       add_column :people, :name, :string
@@ -547,9 +537,7 @@
   ```
 
 * <a name="no-model-class-migrations"></a>
-  Don't use model classes in migrations. The model classes are constantly
-  evolving and at some point in the future migrations that used to work might
-  stop, because of changes in the models used.
+  Не используйте классы модели в миграции. Классы модели постоянно развиваются и в какой-то момент в будущем миграции которые работали, могут перестать работать, из-за изменений в используемых моделях.
 <sup>[[ссылка](#no-model-class-migrations)]</sup>
 
 ## Views

@@ -554,17 +554,14 @@
   Избегайте дублирования кода, используя партиалы и макеты.
 <sup>[[ссылка](#partials)]</sup>
 
-## Internationalization
+## Интернационализация
 
 * <a name="locale-texts"></a>
-  No strings or other locale specific settings should be used in the views,
-  models and controllers. These texts should be moved to the locale files in the
-  `config/locales` directory.
+  Никакие строки или другие зависимые от локали параметры не должны использоваться в видах, моделях и контроллерах. Они должны быть вынесены в файлы локалей в папку `config/locales`.
 <sup>[[ссылка](#locale-texts)]</sup>
 
 * <a name="translated-labels"></a>
-  When the labels of an ActiveRecord model need to be translated, use the
-  `activerecord` scope:
+	Если необходимо перевести наименования атрибутов модели, используйте пространство имен `activerecord`:
 <sup>[[ссылка](#translated-labels)]</sup>
 
   ```
@@ -577,20 +574,14 @@
           name: 'Full name'
   ```
 
-  Then `User.model_name.human` will return "Member" and
-  `User.human_attribute_name("name")` will return "Full name". These
-  translations of the attributes will be used as labels in the views.
-
+  В этом случае `User.model_name.human` вернет "Member", а
+  `User.human_attribute_name("name")` вернет "Full name". Эти переводы атрибутов будут использованы как ярлыки в видах.
 
 * <a name="organize-locale-files"></a>
-  Separate the texts used in the views from translations of ActiveRecord
-  attributes. Place the locale files for the models in a folder `models` and the
-  texts used in the views in folder `views`.
+  Отделяйте текст используемый в видах от атрибутов ActiveRecord. Поместите файлы локали для модели в папку `models`, а тест используемый в видах в папку `views`.
 <sup>[[ссылка](#organize-locale-files)]</sup>
 
-  * When organization of the locale files is done with additional directories,
-    these directories must be described in the `application.rb` file in order
-    to be loaded.
+  * При организации файлов локали с использованием дополнительных папок, эти папки должны быть описаны в файле `application.rb` в том порядке в котором их следует загружать.
 
       ```Ruby
       # config/application.rb
@@ -598,18 +589,15 @@
       ```
 
 * <a name="shared-localization"></a>
-  Place the shared localization options, such as date or currency formats, in
-  files under the root of the `locales` directory.
+  Помещайте общие опции локализации, такие как формат даты или валюты в файлы, находящиеся в корне папки `locales`.
 <sup>[[ссылка](#shared-localization)]</sup>
 
 * <a name="short-i18n"></a>
-  Use the short form of the I18n methods: `I18n.t` instead of `I18n.translate`
-  and `I18n.l` instead of `I18n.localize`.
+  Используйте укороченные формы методов класса I18n: `I18n.t` а не `I18n.translate` и `I18n.l` а не `I18n.localize`.
 <sup>[[ссылка](#short-i18n)]</sup>
 
 * <a name="lazy-lookup"></a>
-  Use "lazy" lookup for the texts used in views. Let's say we have the following
-  structure:
+	Используйте "ленивый" поиск текстов используемых в видах. Например у нас есть следующая структура :
 <sup>[[ссылка](#lazy-lookup)]</sup>
 
   ```
@@ -619,29 +607,27 @@
         title: 'User details page'
   ```
 
-  The value for `users.show.title` can be looked up in the template
-  `app/views/users/show.html.haml` like this:
+  Значение `users.show.title` может быть найдено в шаблоне
+  `app/views/users/show.html.haml` например так:
 
   ```Ruby
   = t '.title'
   ```
 
 * <a name="dot-separated-keys"></a>
-  Use the dot-separated keys in the controllers and models instead of specifying
-  the `:scope` option. The dot-separated call is easier to read and trace the
-  hierarchy.
+  Используйте разделенные точкой ключи в контроллерах и моделях вместо использования опций `:scope`. Разделенные точкой ключи проще для прочтения и отслеживания иерархии.
 <sup>[[ссылка](#dot-separated-keys)]</sup>
 
   ```Ruby
-  # use this call
+  # лучше использовать такой вызов
   I18n.t 'activerecord.errors.messages.record_invalid'
 
-  # instead of this
+  # а не такой
   I18n.t :record_invalid, :scope => [:activerecord, :errors, :messages]
   ```
 
 * <a name="i18n-guides"></a>
-  More detailed information about the Rails i18n can be found in the [Rails
+  Более детальную информацию про интернализацию в Rails можно найти в [Rails
   Guides](http://guides.rubyonrails.org/i18n.html)
 <sup>[[ссылка](#i18n-guides)]</sup>
 

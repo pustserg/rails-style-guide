@@ -540,19 +540,18 @@
   Не используйте классы модели в миграции. Классы модели постоянно развиваются и в какой-то момент в будущем миграции которые работали, могут перестать работать, из-за изменений в используемых моделях.
 <sup>[[ссылка](#no-model-class-migrations)]</sup>
 
-## Views
+## Виды
 
 * <a name="no-direct-model-view"></a>
-  Never call the model layer directly from a view.
+  Никогда не обращайтесь к моделям из вида.
 <sup>[[ссылка](#no-direct-model-view)]</sup>
 
 * <a name="no-complex-view-formatting"></a>
-  Never make complex formatting in the views, export the formatting to a method
-  in the view helper or the model.
+  Никогда не делайте сложное форматирование в виде, лучше вынесты форматирование в хелпер или метод модели.
 <sup>[[ссылка](#no-complex-view-formatting)]</sup>
 
 * <a name="partials"></a>
-  Mitigate code duplication by using partial templates and layouts.
+  Избегайте дублирования кода, используя партиалы и макеты.
 <sup>[[ссылка](#partials)]</sup>
 
 ## Internationalization

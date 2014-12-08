@@ -268,8 +268,7 @@
     ```
 
 * <a name="has-many-through"></a>
-  Предпочитайте ассоциацию `has_many :through` ассоциацям вида `has_and_belongs_to_many`. Использования
-  `has_many :through` позволяет иметь дополнительные атрибуты и валидаци при объединении моделей.
+  Предпочитайте ассоциацию `has_many :through` ассоциацям вида `has_and_belongs_to_many`. Использование  `has_many :through` позволяет иметь дополнительные атрибуты и валидаци при объединении моделей.
   <sup>[[ссылка](#has-many-through)]</sup>
 
     ```Ruby
@@ -328,7 +327,7 @@
     ```
 
 * <a name="sexy-validations"></a>
-	Когда нестандартная валидация используется чаще чем один раз или является неким регулярным выражением, создайте файл нестандартной валидации.
+	Когда пользовательская валидация используется чаще чем один раз или является неким регулярным выражением, создайте файл пользовательской валидации.
   <sup>[[ссылка](#sexy-validations)]</sup>
 
     ```Ruby
@@ -422,12 +421,9 @@
         end
         ```
 
-    In order to convert this to a URL-friendly value, `parameterize` should be
-    called on the string. The `id` of the object needs to be at the beginning so
-    that it can be found by the `find` method of ActiveRecord.
-
-  * Use the `friendly_id` gem. It allows creation of human-readable URLs by using
-    some descriptive attribute of the model instead of its `id`.
+    Для того чтобы преобразовать это в читаемый вид, `parametereize` должен быть применен к строке. `id` объекта должен идти вначале для того чтобы запись могла быть найдена с помощью метода ActiveRecord `find`
+    
+  * Используйте `friendly_id` гем. Он позволяет создавать ЧПУ используя описательный атрибут модели, а не `id`.
 
         ```Ruby
         class Person
@@ -436,16 +432,11 @@
         end
         ```
 
-  Check the [gem documentation](https://github.com/norman/friendly_id)
-  for more information about its usage.
+  Посмотрите [документацию гема](https://github.com/norman/friendly_id)
+  для более подробной информации.
 
 * <a name="find-each"></a>
-  Use `find_each` to iterate over a collection of AR objects. Looping through
-  a collection of records from the database (using the `all`
-  method, for example) is very inefficient since it will try to
-  instantiate all the objects at once. In that case, batch processing
-  methods allow you to work with the records in batches, thereby
-  greatly reducing memory consumption.
+  Используйте `find_each` для перебора коллекции объектов AR. Цикл по коллекции записей из базы данных (используя `all` метод, например) является очень неэффективным, так как он будет пытаться загрузить все объекты сразу. В данном случае пакетная обработка позволяет работать с записями в партиях, что значительно снижает потребление памяти.
   <sup>[[ссылка](#find-each)]</sup>
 
 
@@ -459,7 +450,7 @@
       person.party_all_night!
     end
 
-    # good
+    # хорошо
     Person.all.find_each do |person|
       person.do_awesome_stuff
     end
@@ -470,12 +461,10 @@
     ```
 
 * <a name="before_destroy"></a>
-  Since [Rails creates callbacks for dependent
-  associations](https://github.com/rails/rails/issues/3458), always call
-  `before_destroy` callbacks that perform validation with `prepend: true`.
+  Так как [Rails создает коллбеки для зависимых ассоциаций](https://github.com/rails/rails/issues/3458), всегда вызывайте  `before_destroy` коллбеки которые выполняют проверку с `prepend: true`.
 
   ```Ruby
-  # плохо (roles will be deleted automatically even if super_admin? is true)
+  # плохо (роли будут удалены автоматически, даже если super_admin? - true)
   has_many :roles, dependent: :destroy
 
   before_destroy :ensure_deletable
@@ -484,7 +473,7 @@
     fail "Cannot delete super admin." if super_admin?
   end
 
-  # good
+  # хорошо
   has_many :roles, dependent: :destroy
 
   before_destroy :ensure_deletable, prepend: true

@@ -648,26 +648,23 @@
 <sup>[[ссылка](#vendor-assets)]</sup>
 
 * <a name="gem-assets"></a>
-  По возможности используйте "гемифицированные" версии ресурсов, например([jquery-rails](https://github.com/rails/jquery-rails),
+  По возможности используйте "гемифицированные" версии ресурсов, например ([jquery-rails](https://github.com/rails/jquery-rails),
   [jquery-ui-rails](https://github.com/joliss/jquery-ui-rails),
-  [bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass),[zurb-foundation](https://github.com/zurb/foundation)).
+   [bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass), [zurb-foundation](https://github.com/zurb/foundation)).
 <sup>[[ссылка](#gem-assets)]</sup>
 
-## Mailers
+## Мейлеры
 
 * <a name="mailer-name"></a>
-  Name the mailers `SomethingMailer`. Without the Mailer suffix it isn't
-  immediately apparent what's a mailer and which views are related to the
-  mailer.
+  Называйте мейлеры `SomethingMailer`. Без суффикса Mailer не сразу понятно что это мейлер и какие виды с ним связаны.
 <sup>[[ссылка](#mailer-name)]</sup>
 
 * <a name="html-plain-email"></a>
-  Provide both HTML and plain-text view templates.
+  Предоставляйте оба шаблона для писем и html и простой текстовый.
 <sup>[[ссылка](#html-plain-email)]</sup>
 
 * <a name="enable-delivery-errors"></a>
-  Enable errors raised on failed mail delivery in your development environment.
-  The errors are disabled by default.
+	Разрешите генерацию ошибок о недоставленной почте в окружении разработчика. Ошибки по умолчанию не генерируются.
 <sup>[[ссылка](#enable-delivery-errors)]</sup>
 
   ```Ruby
@@ -677,9 +674,7 @@
   ```
 
 * <a name="local-smtp"></a>
-  Use a local SMTP server like
-  [Mailcatcher](https://github.com/sj26/mailcatcher) in the development
-  environment.
+  Используйте локальный SMTP сервер, например [Mailcatcher](https://github.com/sj26/mailcatcher) в окружении разработчика.
 <sup>[[ссылка](#local-smtp)]</sup>
 
   ```Ruby
@@ -693,7 +688,7 @@
   ```
 
 * <a name="default-hostname"></a>
-  Provide default settings for the host name.
+  Предоставьте настройки по умолчанию для имени хоста.
 <sup>[[ссылка](#default-hostname)]</sup>
 
   ```Ruby
@@ -703,14 +698,12 @@
   # config/environments/production.rb
   config.action_mailer.default_url_options = { host: 'your_site.com' }
 
-  # in your mailer class
+  # в классе вашего мейлера.
   default_url_options[:host] = 'your_site.com'
   ```
 
 * <a name="url-not-path-in-email"></a>
-  If you need to use a link to your site in an email, always use the `_url`, not
-  `_path` methods. The `_url` methods include the host name and the `_path`
-  methods don't.
+  Если вам необходимо использовать ссылку на сайт в вашем письме, всегда используйте `_url`, а не `_path` методы. Методы `_url` включают имя хоста, а методы `_path` нет.
 <sup>[[ссылка](#url-not-path-in-email)]</sup>
 
   ```Ruby
@@ -718,23 +711,22 @@
   You can always find more info about this course
   = link_to 'here', course_path(@course)
 
-  # good
+  # хорошо
   You can always find more info about this course
   = link_to 'here', course_url(@course)
   ```
 
 * <a name="email-addresses"></a>
-  Format the from and to addresses properly. Use the following format:
+  Форматируйте поля "От кого" и "Кому" паравильно. Используйте следующий формат.
 <sup>[[ссылка](#email-addresses)]</sup>
 
   ```Ruby
-  # in your mailer class
+  # в классе мейлера.
   default from: 'Your Name <info@your_site.com>'
   ```
 
 * <a name="delivery-method-test"></a>
-  Make sure that the e-mail delivery method for your test environment is set to
-  `test`:
+  Будьте уверены что метод доставки почты в тестовом окружении установлена в `test`.
 <sup>[[ссылка](#delivery-method-test)]</sup>
 
   ```Ruby
@@ -744,7 +736,7 @@
   ```
 
 * <a name="delivery-method-smtp"></a>
-  The delivery method for development and production should be `smtp`:
+  Метод доставки в окружении разработчика и "боевом" окружении должен быть `smtp`:
 <sup>[[ссылка](#delivery-method-smtp)]</sup>
 
   ```Ruby
@@ -754,19 +746,11 @@
   ```
 
 * <a name="inline-email-styles"></a>
-  When sending html emails all styles should be inline, as some mail clients
-  have problems with external styles. This however makes them harder to maintain
-  and leads to code duplication. There are two similar gems that transform the
-  styles and put them in the corresponding html tags:
-  [premailer-rails](https://github.com/fphilipe/premailer-rails) and
-  [roadie](https://github.com/Mange/roadie).
+  При отправке html письма все стили должны быть встроенными так как некоторые почтовые клиенты некорректно работают с внешними стилями. Это приводит к усложнению поддержки и дублированию кода. Есть два похожих гема которые трансформируют стили и кладут их в соответствующие html теги: [premailer-rails](https://github.com/fphilipe/premailer-rails) и [roadie](https://github.com/Mange/roadie).
 <sup>[[ссылка](#inline-email-styles)]</sup>
 
 * <a name="background-email"></a>
-  Sending emails while generating page response should be avoided. It causes
-  delays in loading of the page and request can timeout if multiple email are
-  sent. To overcome this emails can be sent in background process with the help
-  of [sidekiq](https://github.com/mperham/sidekiq) gem.
+  Следует избегать отправки почтового сообщения во время формирования ответа и рендеринга страницы. Это может вызвать задержки формирования страницы и запрос может завершиться по тайм-ауту если отправляется несколько писем. Чтобы этого не случилось, письма можно отправить фоновым процессом с помощью гема [sidekiq](https://github.com/mperham/sidekiq).
 <sup>[[ссылка](#background-email)]</sup>
 
 ## Bundler

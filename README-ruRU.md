@@ -633,30 +633,24 @@
 
 ## Assets
 
-Use the [assets pipeline](http://guides.rubyonrails.org/asset_pipeline.html) to leverage organization within
-your application.
+Используйте фалопровод [assets pipeline](http://guides.rubyonrails.org/asset_pipeline.html) для эффективной организации ресурсов в приложении.
 
 * <a name="reserve-app-assets"></a>
-  Reserve `app/assets` for custom stylesheets, javascripts, or images.
+  Храните в папке `app/assets` пользовательские стили, скрипты и изображения.
 <sup>[[ссылка](#reserve-app-assets)]</sup>
 
 * <a name="lib-assets"></a>
-  Use `lib/assets` for your own libraries that don’t really fit into the
-  scope of the application.
+  Используйте `lib/assets` для своих библиотек, которые не вписываются в обьем приложения.
 <sup>[[ссылка](#lib-assets)]</sup>
 
 * <a name="vendor-assets"></a>
-  Third party code such as [jQuery](http://jquery.com/) or
-  [bootstrap](http://twitter.github.com/bootstrap/) should be placed in
-  `vendor/assets`.
+  Код сторонних разработчиков, например [jQuery](http://jquery.com/) или [bootstrap](http://twitter.github.com/bootstrap/) должен находиться в папке `vendor/assets`.
 <sup>[[ссылка](#vendor-assets)]</sup>
 
 * <a name="gem-assets"></a>
-  When possible, use gemified versions of assets (e.g.
-  [jquery-rails](https://github.com/rails/jquery-rails),
+  По возможности используйте "гемифицированные" версии ресурсов, например([jquery-rails](https://github.com/rails/jquery-rails),
   [jquery-ui-rails](https://github.com/joliss/jquery-ui-rails),
-  [bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass),
-  [zurb-foundation](https://github.com/zurb/foundation)).
+  [bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass),[zurb-foundation](https://github.com/zurb/foundation)).
 <sup>[[ссылка](#gem-assets)]</sup>
 
 ## Mailers

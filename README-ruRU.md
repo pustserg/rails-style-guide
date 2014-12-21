@@ -789,27 +789,22 @@
   Не убирайте `Gemfile.lock` из под управления системы контроля версий. Это не какой-то случайно генерируемый файл - он дает уверенность что все члены вашей команды получают одинаковые версии гемов когда выполняют `bundle install`.
 <sup>[[ссылка](#gemfile-lock)]</sup>
 
-## Flawed Gems
+## Проблемные гемы/Flawed Gems
 
-This is a list of gems that are either problematic or superseded by
-other gems. You should avoid using them in your projects.
-
-* [rmagick](http://rmagick.rubyforge.org/) - this gem is notorious for its memory consumption. Use  [minimagick](https://github.com/probablycorey/mini_magick) instead.
-
-
-*  [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/) - old solution for running tests automatically. Far  inferior to [guard](https://github.com/guard/guard) and [watchr](https://github.com/mynyml/watchr).
+Это список гемов 
+Это список гемов с которыми возможны проблемы или которые заменены другими гемами. Стоит избегать использования их в ваших проектах.
+* [rmagick](http://rmagick.rubyforge.org/) - Этот гем известен своим потреблением памяти при работе. Используйте  [minimagick](https://github.com/probablycorey/mini_magick) как замену.
 
 
-*  [rcov](https://github.com/relevance/rcov) - code coverage tool, not  compatible with Ruby 1.9. Use
-  [SimpleCov](https://github.com/colszowka/simplecov) instead.
+*  [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/) - устаревшее решения для автоматического запуска тестов. Гораздо хуже чем [guard](https://github.com/guard/guard) и [watchr](https://github.com/mynyml/watchr).
 
 
-*  [therubyracer](https://github.com/cowboyd/therubyracer) - the use of  this gem in production is strongly discouraged as it uses a very large amount of
-  memory. I'd suggest using `node.js` instead.
+*  [rcov](https://github.com/relevance/rcov) - инструмент для определения наксколько код покрыт тестами, не совместим с  Ruby 1.9. Используйте [SimpleCov](https://github.com/colszowka/simplecov) как замену.
 
 
-This list is also a work in progress. Please, let me know if you know
-other popular, but flawed gems.
+*  [therubyracer](https://github.com/cowboyd/therubyracer) - использование этого гема в production настоятельно не рекомендуется так как он потребляет слишком много памяти. Я рекомендую вместо него использовать `node.js`.
+
+Этот список постоянно пополняется. Пожалуйста дайте мне знать если знаете другие популярные, но проблемные гемы.
 
 ## Управление процессами
 

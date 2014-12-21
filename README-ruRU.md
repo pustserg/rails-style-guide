@@ -815,8 +815,7 @@
 
 # Дополнительные источники
 
-There are a few excellent resources on Rails style, that you should
-consider if you have time to spare:
+Есть несколько отличных ресурсов по стилю кода в Rails, которые стоит посмотреть в свободное время:
 
 *  [The Rails 4 Way](http://www.amazon.com/The-Rails-Addison-Wesley-Professional-Ruby/dp/0321944275)* [Ruby on Rails Guides](http://guides.rubyonrails.org/)
 * [The RSpec Book](http://pragprog.com/book/achbd/the-rspec-book)

@@ -5,9 +5,9 @@
 > Role models are important. <br/>
 > -- Офицер Алекс Мёрфи / Робот-полицейский
 
-The goal of this guide is to present a set of best practices and style
-prescriptions for Ruby on Rails 3 & 4 development. It's a complementary
-guide to the already existing community-driven
+Целью этого руководства является распространение набора проверенных практик
+и стилистических рекомендаций при разработки приложений с помощью Ruby on Rails
+(для версий 3 и 4). Это руководство дополняет уже существующий сборник:
 [Руби: руководство по стилю оформления][ruby-style-guide].
 
 Некоторые из приведенных здесь рекомендаций будут применимы только
@@ -27,20 +27,22 @@ guide to the already existing community-driven
 
 # Руководство по стилю оформления Rails
 
-This Rails style guide recommends best practices so that real-world Rails
-programmers can write code that can be maintained by other real-world Rails
-programmers. A style guide that reflects real-world usage gets used, and a
-style guide that holds to an ideal that has been rejected by the people it is
-supposed to help risks not getting used at all &ndash; no matter how good it is.
+Настоящее руководство по стилю рекомендует лучшие практики оформленя, благодаря
+которым обычные разработчики на Rails смогут писать код, который с легкостью
+будут поддерживать другие обычные программисты. Руководство по оформлению,
+которое отражает повседневные реалии, будет применяться постоянно,
+а руководство, стремящееся к идеалу, который не принимается обычными людьми,
+подвергается риску вообще быть забытым. При этом абсолютно не важно, насколько
+хорошим оно является.
 
-The guide is separated into several sections of related rules. I've
-tried to add the rationale behind the rules (if it's omitted I've
-assumed it's pretty obvious).
+Данное руководство разделено на несколько частей, состоящий из связанных
+по смыслу правил. В каждом случае я попытался обосновать появление этих правил
+(объяснение опущено в ситуациях, когда я посчитал его очевидным).
 
-I didn't come up with all the rules out of nowhere - they are mostly
-based on my extensive career as a professional software engineer,
-feedback and suggestions from members of the Rails community and
-various highly regarded Rails programming resources.
+Все эти правила не появились из пустоты, они по большей части основываются
+на моем собственном обширном профессиональном опыте в качестве разработчика ПО,
+отзывах и предложениях других членов сообщества разработчиков на Rails
+и различных общепризнанных источниках по разработке Rails-приложений.
 
 ## Содержание
 
@@ -49,29 +51,29 @@ various highly regarded Rails programming resources.
 * [Контроллеры](#Контроллеры)
 * [Модели](#Модели)
 * [Миграции](#Миграции)
-* [Представления](#Представления)
+* [Представления](#Представления) <!--- @FIXME -->
 * [Интернационализация](#Интернационализация)
 * [Assets](#assets)
 * [Mailers](#mailers)
 * [Bundler](#bundler)
-* [Flawed Gems](#flawed-gems)
+* [Гемы с дефектами](#Гемы-с-дефектами)
 * [Управление процессами](#Управление-процессами)
 
 ## Конфигурация
 
 * <a name="config-initializers"></a>
-  Put custom initialization code in `config/initializers`. The code in
-  initializers executes on application startup.
+  Код для инициализации приложения помещайте в директорию `config/initializers/`.
+  Код в этой директории выполняется при запуске приложения.
   <sup>[[ссылка](#config-initializers)]</sup>
 
 * <a name="gem-initializers"></a>
-  Keep initialization code for each gem in a separate file with the same name as
-  the gem, for example `carrierwave.rb`, `active_admin.rb`, etc.
+  Для каждого гема записывайте код инициализации в одноименный отдельный файл.
+  Например, `carrierwave.rb`, `active_admin.rb` и т.д.
   <sup>[[ссылка](#gem-initializers)]</sup>
 
 * <a name="dev-test-prod-configs"></a>
-  Adjust accordingly the settings for development, test and production
-  environment (in the corresponding files under `config/environments/`)
+  Поправьте настройки для рабочего, тестового и промышленного укружений
+  в соответствующих файлах в директории `config/environments/`.
   <sup>[[ссылка](#dev-test-prod-configs)]</sup>
 
         ```Ruby
@@ -81,13 +83,13 @@ various highly regarded Rails programming resources.
         ```
 
 * <a name="app-config"></a>
-  Keep configuration that's applicable to all environments
-  in the `config/application.rb` file.
+  Сохраняйте настройки, которые относятся ко всем окружениям, в файле
+  `config/application.rb`.
   <sup>[[ссылка](#app-config)]</sup>
 
 * <a name="staging-like-prod"></a>
-  Create an additional `staging` environment that closely resembles
-  the `production` one.
+  Создайте дополнительное окружение `staging`, которое будет очень схоже с
+  вашим окружением `production`.
   <sup>[[ссылка](#staging-like-prod)]</sup>
 
 ## Маршрутизация
@@ -187,18 +189,18 @@ various highly regarded Rails programming resources.
 ## Контроллеры
 
 * <a name="skinny-controllers"></a>
-  Keep the controllers skinny - they should only retrieve data for the view
-  layer and shouldn't contain any business logic (all the business logic should
-  naturally reside in the model).
+  Поддерживайте код контроллеров обозримым, контроллеры должны лишь получать
+  данные для шаблонов и не должны реализовывать бизнес-логику. Вся бизнес-логика
+  вашего приложения должна по определению реализовываться в моделях.
   <sup>[[ссылка](#skinny-controllers)]</sup>
 
 * <a name="one-method"></a>
-  Each controller action should (ideally) invoke only one method other than an
-  initial find or new.
+  Каждое действие в котроллере должно (в идеале) вызывать не более одного
+  другого метода (кроме `find` или `new`).
   <sup>[[ссылка](#one-method)]</sup>
 
 * <a name="shared-instance-variables"></a>
-  Share no more than two instance variables between a controller and a view.
+  Старайтесь не передавать более двух переменных из контроллера в шаблон.
   <sup>[[ссылка](#shared-instance-variables)]</sup>
 
 ## Модели
@@ -888,32 +890,39 @@ your application.
   ```
 
 * <a name="gemfile-lock"></a>
-  Do not remove the `Gemfile.lock` from version control. This is not some
-  randomly generated file - it makes sure that all of your team members get the
-  same gem versions when they do a `bundle install`.
-<sup>[[ссылка](#gemfile-lock)]</sup>
+  Сохраняйте файл `Gemfile.lock` в вашей системе управления версиями. Этот файл
+  содержит неслучайную информацию, так вы сможете удостовериться, что все члены
+  вашей команды установят точно ту же версию библиотек, что и вы, при помощи
+  команды `bundle install`.
+  <sup>[[ссылка](#gemfile-lock)]</sup>
 
-## Flawed Gems
+## Гемы с дефектами
 
-This is a list of gems that are either problematic or superseded by
-other gems. You should avoid using them in your projects.
+В настоящем списке перечислены гемы, которые либо имеют проблемы в реализации,
+либо имеют лучшие аналоги. Вам не следует применять их в своих проектах.
 
-* [rmagick](http://rmagick.rubyforge.org/) - this gem is notorious for its memory consumption. Use  [minimagick](https://github.com/probablycorey/mini_magick) instead.
-
-
-*  [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/) - old solution for running tests automatically. Far  inferior to [guard](https://github.com/guard/guard) and [watchr](https://github.com/mynyml/watchr).
-
-
-*  [rcov](https://github.com/relevance/rcov) - code coverage tool, not  compatible with Ruby 1.9. Use
-  [SimpleCov](https://github.com/colszowka/simplecov) instead.
+* [rmagick](http://rmagick.rubyforge.org/) - this gem is notorious
+  for its memory consumption.
+  Use [minimagick](https://github.com/probablycorey/mini_magick) instead.
 
 
-*  [therubyracer](https://github.com/cowboyd/therubyracer) - the use of  this gem in production is strongly discouraged as it uses a very large amount of
-  memory. I'd suggest using `node.js` instead.
+* [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/) - old solution
+  for running tests automatically. Far  inferior to
+  [guard](https://github.com/guard/guard) and
+  [watchr](https://github.com/mynyml/watchr).
 
 
-This list is also a work in progress. Please, let me know if you know
-other popular, but flawed gems.
+* [rcov](https://github.com/relevance/rcov) - code coverage tool, not compatible
+  with Ruby 1.9. Use [SimpleCov](https://github.com/colszowka/simplecov) instead.
+
+
+* [therubyracer](https://github.com/cowboyd/therubyracer) - the use of this gem
+  in production is strongly discouraged as it uses a very large amount
+  of memory. I'd suggest using `node.js` instead.
+
+
+Работа над этим списком лишь начата. Пожалуйста, если вы знаете о популярных,
+но дефектных библиотеках, то проинформируйте меня.
 
 ## Управление процессами
 
@@ -924,16 +933,18 @@ other popular, but flawed gems.
 
 # Дополнительные источники
 
-There are a few excellent resources on Rails style, that you should
-consider if you have time to spare:
+Существует несколько отличных источников по стилю офрмления приложений на Rails,
+на которые вы можете взглянуть, если у вас будет свободное время:
 
-*  [The Rails 4 Way](http://www.amazon.com/The-Rails-Addison-Wesley-Professional-Ruby/dp/0321944275)* [Ruby on Rails Guides](http://guides.rubyonrails.org/)
+<!--- @FIFXME: find russian translations -->
+* [The Rails 4 Way](http://www.amazon.com/The-Rails-Addison-Wesley-Professional-Ruby/dp/0321944275)
+* [Ruby on Rails Guides](http://guides.rubyonrails.org/)
 * [The RSpec Book](http://pragprog.com/book/achbd/the-rspec-book)
 * [The Cucumber Book](http://pragprog.com/book/hwcuc/the-cucumber-book)
 * [Everyday Rails Testing with RSpec](https://leanpub.com/everydayrailsrspec)
 
 
-# Contributing
+# Сотрудничество
 
 Ничто, описанное в этом руководстве, не высечено в камне. И я очень хотел бы
 сотрудничать со всеми, кто интересуется стилистикой оформления кода Rails,
@@ -943,8 +954,8 @@ consider if you have time to spare:
 Не стесняйтесь создавать отчеты об ошибках и присылать мне запросы на интеграцию
 вашего кода. И заранее большое спасибо за вашу помощь!
 
-Вы можете поддержать проект (и РубоКоп) денежным взносом
-при помощи [gittip](https://www.gittip.com/bbatsov).
+Вы можете поддержать проект (и РубоКоп) денежным взносом при помощи
+[gittip](https://www.gittip.com/bbatsov).
 
 [![Дай Gittip](https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png)](https://www.gittip.com/bbatsov)
 
